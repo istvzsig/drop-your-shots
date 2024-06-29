@@ -1,0 +1,38 @@
+:host {
+  --cols: 4;
+}
+
+.gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  columns: var(--cols) auto;
+  z-index: -1;
+  @media screen and (max-width: 500px) {
+    --cols: 1;
+  }
+  @media screen and (min-width: 501px) and (max-width: 700px) {
+    --cols: 2;
+  }
+  @media screen and (min-width: 701px) and (max-width: 1000px) {
+    --cols: 3;
+  }
+  @media screen and (min-width: 1001px) and (max-width: 1300px) {
+    --cols: 4;
+  }
+  @media screen and (min-width: 1301px) {
+    --cols: 5;
+  }
+}
+
+.gallery-item {
+  /* flex: 1 1 calc(25% - 10px); */
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  vertical-align: middle;
+}

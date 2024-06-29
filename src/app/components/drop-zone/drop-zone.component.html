@@ -1,0 +1,9 @@
+<div
+  [class]="dragover"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+  DROP YOUR SHOTS
+  <input type="file" (change)="onFileSelected($event)" multiple hidden />
+</div>
