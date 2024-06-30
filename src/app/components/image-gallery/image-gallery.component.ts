@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'image-gallery',
@@ -13,12 +13,18 @@ export class ImageGalleryComponent implements OnInit {
 
   ngOnInit() {
     this.loadImages();
+    this.filterImages();
     window.addEventListener('storage', () => this.loadImages());
-    console.log(this.images);
   }
 
   loadImages() {
     const images = localStorage.getItem('images');
     this.images = images ? JSON.parse(images) : [];
+  }
+
+  filterImages() {
+    this.images = this.images.filter((image, index) => {
+      return image !== this.images[index + 1];
+    });
   }
 }

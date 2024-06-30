@@ -1,9 +1,16 @@
 <div
-  [class]="dragover"
+  class="drop-zone-overlay"
+  *ngIf="isDragOver"
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)"
   (drop)="onDrop($event)"
 >
-  DROP YOUR SHOTS
-  <input type="file" (change)="onFileSelected($event)" multiple hidden />
+  Drop your images here
 </div>
+<input
+  type="file"
+  (change)="onFileSelected($event)"
+  multiple
+  hidden
+  #fileInput
+/>

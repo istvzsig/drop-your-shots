@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 
 @Component({
@@ -5,38 +6,43 @@ import { Component, HostListener } from '@angular/core';
   standalone: true,
   templateUrl: './drop-zone.component.html',
   styleUrls: ['./drop-zone.component.css'],
+  imports: [CommonModule],
 })
 export class DropZoneComponent {
-  // @HostListener('click', ['$event'])
-  // onClick(event: Event) {
-  //   (event.target as HTMLElement).querySelector('input')?.click();
-  // }
+  isDragOver = false;
 
-  dragover: string;
-
-  constructor() {
-    this.dragover = 'drop-zone';
+  @HostListener('document:dragover', ['$event'])
+  onDocumentDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = true;
   }
 
-  ngOnChange() {
-    console.log('asdsd');
+  @HostListener('document:dragleave', ['$event'])
+  onDocumentDragLeave(event: DragEvent) {
+    if (event.clientX === 0 && event.clientY === 0) {
+      this.isDragOver = false;
+    }
+  }
+
+  @HostListener('document:drop', ['$event'])
+  onDocumentDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
   }
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this.dragover += ' dragover';
   }
 
   onDragLeave(event: DragEvent) {
-    event.stopImmediatePropagation();
-    this.dragover = 'drop-zone';
+    event.preventDefault();
+    this.isDragOver = false;
   }
 
   onDrop(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation();
-    this.dragover = 'drop-zone';
+    this.isDragOver = false;
 
     if (event.dataTransfer?.files) {
       this.handleFiles(event.dataTransfer.files);
