@@ -37,9 +37,16 @@
 }
 
 .gallery .shuffle-button {
-  background-color: blue;
-  color: white;
   position: fixed;
+  color: blue;
+  padding: 1rem;
+  margin: -1rem;
+  transition: 420ms ease;
+  cursor: pointer;
+}
+
+.gallery .shuffle-button:hover {
+  transform: rotateZ(360deg);
 }
 
 .gallery-item img {
@@ -47,4 +54,5 @@
   height: auto;
   border-radius: 5px;
   vertical-align: middle;
+  user-select: none;
 }
