@@ -63,7 +63,7 @@ export class DropZoneComponent {
     const reader = new FileReader();
     reader.onload = () => {
       const images = this.getImagesFromLocalStorage();
-      images.push(reader.result as string);
+      images.unshift(reader.result as string);
       localStorage.setItem('images', JSON.stringify(images));
       window.dispatchEvent(new Event('storage')); // Notify gallery component
     };
