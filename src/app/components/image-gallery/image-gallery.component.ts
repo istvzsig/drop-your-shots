@@ -17,6 +17,10 @@ export class ImageGalleryComponent implements OnInit {
     window.addEventListener('storage', () => this.loadImages());
   }
 
+  onClick(event: MouseEvent) {
+    this.shuffleImages();
+  }
+
   loadImages() {
     const images = localStorage.getItem('images');
     this.images = images ? JSON.parse(images) : [];
@@ -26,5 +30,12 @@ export class ImageGalleryComponent implements OnInit {
     this.images = this.images.filter((image, index) => {
       return image !== this.images[index + 1];
     });
+  }
+
+  shuffleImages() {
+    for (let i = 0; i < this.images.length; ++i) {
+      let r = (Math.random() * this.images.length) | 0;
+      [this.images[i], this.images[r]] = [this.images[r], this.images[i]];
+    }
   }
 }

@@ -8,6 +8,4 @@ html,
 
 body {
   background-color: black;
-  overflow: hidden;
-  overflow-y: scroll;
 }

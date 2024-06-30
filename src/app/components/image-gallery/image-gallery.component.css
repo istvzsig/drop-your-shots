@@ -3,7 +3,7 @@
 }
 
 .gallery {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   columns: var(--cols) auto;
@@ -28,6 +28,12 @@
 .gallery-item {
   /* flex: 1 1 calc(25% - 10px); */
   box-sizing: border-box;
+}
+
+.gallery .shuffle-button {
+  background-color: blue;
+  color: white;
+  position: fixed;
 }
 
 .gallery-item img {
